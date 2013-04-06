@@ -5,13 +5,6 @@ import sys
 import numpy as np
 import dataimporter as di
 
-filename = sys.argv[1]
-data = di.readCsv(filename, ' ')
-
-print data
-
-# 	Input: List in format: Mean SD NumberOfMeasurements
-
 def aggregate(data):
 	k = len(data)
 	
@@ -50,7 +43,14 @@ def aggregate(data):
 	
 	var = s1_sum + s2_sum
 	sd = np.sqrt(var)
+	sem = sd / np.sqrt(n)
 	
-	print x_bar, sd, n
-		
+	print x_bar, sd, sem, n, k
+
+# 	Input: List in format: Mean SD NumberOfMeasurements
+#	Output: Aggregated Mean, SD, SEM, n, N
+
+filename = sys.argv[1]
+data = di.readCsv(filename, ' ')
+
 aggregate(data)
