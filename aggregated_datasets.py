@@ -21,7 +21,6 @@ def aggregate(data):
 	n = float(np.sum(n_array))
 	
 #	Perform calculation
-#	First summand s1
 
 	s1_array = []
 	s2_array = []
