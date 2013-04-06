@@ -24,23 +24,17 @@ def aggregate(data):
 #	First summand s1
 
 	s1_array = []
-
-	for s1 in data:
-		result1 = float(s1[2]) / n * float(s1[1]) * float(s1[1])
-		s1_array.append(result1)
-		
-	s1_sum = np.sum(s1_array)
-
-#	Second summand s2
-
 	s2_array = []
-	
-	for s2 in data:
-		result2 = float(s2[2]) / n * (float(s2[0]) - x_bar) * (float(s2[0]) - x_bar)
+
+	for s in data:
+		result1 = float(s[2]) / n * float(s[1]) * float(s[1])
+		s1_array.append(result1)
+		result2 = float(s[2]) / n * (float(s[0]) - x_bar) * (float(s[0]) - x_bar)
 		s2_array.append(result2)
 		
+	s1_sum = np.sum(s1_array)
 	s2_sum = np.sum(s2_array)
-	
+
 	var = s1_sum + s2_sum
 	sd = np.sqrt(var)
 	sem = sd / np.sqrt(k)
