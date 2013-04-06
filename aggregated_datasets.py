@@ -43,7 +43,7 @@ def aggregate(data):
 	
 	var = s1_sum + s2_sum
 	sd = np.sqrt(var)
-	sem = sd / np.sqrt(n)
+	sem = sd / np.sqrt(k)
 	
 	print x_bar, sd, sem, n, k
 
