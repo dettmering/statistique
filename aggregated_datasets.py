@@ -24,26 +24,33 @@ def aggregate(data):
 
 	s1_array = []
 	s2_array = []
+	weightedx_array = []
 
 	for s in data:
 		result1 = float(s[2]) / n * float(s[1]) * float(s[1])
 		s1_array.append(result1)
 		result2 = float(s[2]) / n * (float(s[0]) - x_bar) * (float(s[0]) - x_bar)
 		s2_array.append(result2)
+		weightedx_raw = float(s[2]) / n * float(s[0])
+		weightedx_array.append(weightedx_raw)
 		
 	s1_sum = np.sum(s1_array)
 	s2_sum = np.sum(s2_array)
+	weightedx_bar = np.sum(weightedx_array)
 
 	var = s1_sum + s2_sum
 	sd = np.sqrt(var)
 	sem = sd / np.sqrt(k)
 	
-	print x_bar, sd, sem, n, k
+	print x_bar, weightedx_bar, sd, sem, n, k
 
 # 	Input: List in format: Mean SD NumberOfMeasurements
-#	Output: Aggregated Mean, SD, SEM, n, N
+#	Output: Mean, weighted mean, SD, SEM, n, N
 
 filename = sys.argv[1]
 data = di.readCsv(filename, ' ')
 
+
+print 'Input file:', filename
+print 'mean(N), weighted mean, weighted SD, SEM(N), n, N'
 aggregate(data)
