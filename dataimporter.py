@@ -2,7 +2,12 @@
 
 import sys
 import csv
-import xlrd
+
+try:
+	import xlrd
+except ImportError:
+	print 'Module xlrd not installed!'
+	pass
 
 def readCsv(filename, delim):	# Reads csv file into an array which will then be used for all searches and calculations. Might be a problem with very large DefaultOut_Image.csv files, tested it with 100 MB
 	ifile  = open(filename, "rb")
