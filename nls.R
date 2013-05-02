@@ -10,8 +10,8 @@ fitDoseresponse <- function(raw) {
 	ck <- summary(model)$coefficients[1]
 	cd50 <- summary(model)$coefficients[2]
 	
-#	plot(data[,"X"],data[,"Y"], type ="p", main = "Y vs. X", xlim=c(1,20), ylim=c(0,1))
-#	curve(1/(1+exp(-ck*(x-cd50))), add=TRUE)
+	plot(data[,"X"],data[,"Y"], type ="p", main = "Y vs. X", xlim=c(1,20), ylim=c(0,1))
+	curve(1/(1+exp(-ck*(x-cd50))), add=TRUE)
 
 	return(c(cd50, ck))
 }
