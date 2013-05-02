@@ -6,7 +6,7 @@ fitDoseresponse <- function(raw) {
 	weight <- raw[,3]
 	colnames(data) <- c("X","Y")
 	
-	nls("Y ~ 1/(1+exp(-k*(X - d50)))", data=data, start=list(k=2,d50=11), weigths=weight)
+	model <- nls("Y ~ 1/(1+exp(-k*(X - d50)))", data=data, start=list(k=2,d50=11), weigths=weight)
 	
 	ck <- summary(model)$coefficients[1]
 	cd50 <- summary(model)$coefficients[2]
