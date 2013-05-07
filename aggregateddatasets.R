@@ -1,7 +1,9 @@
 ### Aggregate Datasets
 ### Till Dettmering, dettmering(at)gmx.net
 
-aggregateDataset <- function(a) {
+aggregateDataset <- function(thefile) {
+	a <- read.table(thefile, comment.char = "#", header= FALSE, blank.lines.skip=TRUE)
+
 	x <- mean(a[,1])
 	k <- length(a[,1])
 	n <- sum(a[,3])
