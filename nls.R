@@ -1,7 +1,8 @@
 # Logistic regression, use for dose response data with binomial distribution
 # RAW data format: Data frame with Dose, Total animals (Total), Responding animals (Resp)
 
-fitDoseresponse <- function(raw) {
+fitLogit <- function(raw) {
+	require(MASS)
 
 #	generates Matrix. First col needs to be number of successes, second col number of failures.
 
@@ -15,6 +16,8 @@ fitDoseresponse <- function(raw) {
 
 	findD50 <- function(b) -b[1]/b[2]
 	d50 <- findD50(coef(result))
-
-	return(cbind(coef(result), d50))
+	
+	print(dose.p(result))
+	
+	return(cbind(coef(result), dose.p(result)))
 }
