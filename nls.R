@@ -1,19 +1,23 @@
-# Nonlinear regression
-# Model: f(x) = 1 / (1 + exp(-k*(x-d50)))
+# Logistic regression, use for dose response data with binomial distribution
+# RAW data format: Data frame with Dose, Total animals (Total), Responding animals (Resp)
 
-fitDoseresponse <- function(raw) {
-	data <- data.frame(raw[,1],raw[,2],raw[,3],raw[,4])
-	colnames(data) <- c("X","Y","R","N")
-	
-	model <- nls("Y ~ 1/(1+exp(-k*(X - d50)))", data=data, start=list(k=2,d50=11), weigths=data[,"N"])
-	
-	ck <- summary(model)$coefficients[1]
-	cd50 <- summary(model)$coefficients[2]
-	ck_err <- summary(model)$coefficients[3]
-	cd50_err <- summary(model)$coefficients[4]
-	
-	plot(data[,"X"],data[,"Y"], type ="p", main = "Y vs. X", xlim=c(1,20), ylim=c(0,1))
-	curve(1/(1+exp(-ck*(x-cd50))), add=TRUE)
+fitLogit <- function(raw) {
+	require(MASS)
 
-	return(c(cd50, cd50_err, ck, ck_err))
+#	generates Matrix. First col needs to be number of successes, second col number of failures.
+
+	raw$Mat <- cbind(raw$Resp, raw$Total - raw$Resp)
+	
+#	Call glm
+
+	result <- glm(Mat ~Dose, family = binomial, data = raw)
+	
+#	Calculate d50
+
+	findD50 <- function(b) -b[1]/b[2]
+	d50 <- findD50(coef(result))
+	
+	print(dose.p(result))
+	
+	return(cbind(coef(result), dose.p(result)))
 }
