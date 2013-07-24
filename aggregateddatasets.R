@@ -10,7 +10,7 @@ aggregateDataset <- function(a) {
 
 	variance <- sum(a[,3] / n * a[,2] * a[,2]) + sum(a[,3] / n * (a[,1] - x) * (a[,1] - x))
 	sd <- sqrt(variance)
-	sem <- sd / sqrt(k)
+	sem <- sd / sqrt(n)
 
 	x_weight <- sum(a[,3] / n * a[,1])
 
