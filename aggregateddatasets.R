@@ -5,7 +5,7 @@ aggregateDataset <- function(a) {
 #	a <- read.table(thefile, comment.char = "#", header= FALSE, blank.lines.skip=TRUE)
 
 	x <- mean(a[,1])
-  sd <- sd(a[,1])
+	sd <- sd(a[,1])
 	k <- length(a[,1])
 	n <- sum(a[,3])
 
