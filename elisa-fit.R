@@ -30,7 +30,7 @@ ggplot(a, aes(x=V1)) +
   geom_line(aes(y = logmod.dev, colour = "4PL model")) +
   annotate("segment", x = min(a$V1), xend = max(a$V1), y = 0, yend = 0, colour = "blue") +
   xlab("Concentration") +
-  ylab("Deviation from standard") +
+  ylab("Deviation from fit") +
   scale_colour_manual("", breaks = c("linear model", "4PL model"), values = c("black", "red"))
 
 ggplot(a, aes(x=V1)) +
@@ -40,5 +40,5 @@ ggplot(a, aes(x=V1)) +
     geom_line(aes(y = logmod.percentdev, colour = "4PL model")) +
     annotate("segment", x = min(a$V1), xend = max(a$V1), y = 0, yend = 0, colour = "blue") +
     xlab("Concentration") +
-    ylab("Percent deviation from standard") +
+    ylab("Percent deviation from fit") +
     scale_colour_manual("", breaks = c("linear model", "4PL model"), values = c("black", "red"))
