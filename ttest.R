@@ -10,3 +10,16 @@ welch <- function(ctrl.x, ctrl.sd, ctrl.n, smpl.x, smpl.sd, smpl.n) {
   result <- cbind(t,df,p)
   return(result)
 }
+
+significance.stars <- function(pvalue) {
+  if (is.na(pvalue)) {star <- ''}
+  else {
+    if (pvalue > 0.05) {star <- ''}
+    if (pvalue <= 0.05) {star <-'*'}
+    if (pvalue <= 0.01) {star <- '**'}
+    if (pvalue <= 0.001) {star <- '***'}
+    if (pvalue <= 0.0001) {star <- '****'}
+  }
+
+  return(star)
+}
