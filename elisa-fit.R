@@ -1,6 +1,5 @@
 ### ELISA fitting of standard curves: compare linear model with 4PL model
 
-library(ggplot2)
 library(drc)
 
 getConc <- function(OD, dilution, logmod.a, logmod.b, logmod.c, logmod.d) {
@@ -18,6 +17,7 @@ logmod.e <- logmod$coef[4]
 plot(logmod)
 
 data$conc <- getConc(data$V1, dilution, logmod.a, logmod.b, logmod.c, logmod.d)
+points(data$V1 ~ data$conc, col = "red")
 data$conc.dilution <- data$conc * dilution
 # Subtract medium manually!
 
