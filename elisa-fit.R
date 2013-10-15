@@ -19,6 +19,7 @@ plot(logmod)
 
 data$conc <- getConc(data$V1, dilution, logmod.a, logmod.b, logmod.c, logmod.d)
 data$conc.dilution <- data$conc * dilution
+points(data$V1 ~ data$conc, col="red")
 # Subtract medium manually!
 
 write.csv(data, "~/Desktop/elisa.txt")
