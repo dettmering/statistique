@@ -1,5 +1,13 @@
 library(ggplot2)
 
+ctrl.mean <- 1
+ctrl.sd <- 0.1
+treated.mean <- 1.1
+treated.sd <- 0.22
+
+# Function that repeats t-test a number of times (rpt) with given sample size, means and sds.
+# Returns a list of p-values from the test
+
 tsim <- function(rpt, n, mean1, sd1, mean2, sd2) {
   x <- 0
   ppool <- NULL
@@ -10,19 +18,24 @@ tsim <- function(rpt, n, mean1, sd1, mean2, sd2) {
   return(ppool)
 }
 
-y <- 2
+# Iterate through sample sizes and run the tsim function
+# Returns data frame with list of mean p-values at a given sample size
+
+i <- 2
 num <- 50
 res <- NULL
 
-while (y <= num) {
-  sim <- tsim(1000, y, 1, 0.2, 1.1, 0.22)
-  res <- rbind(res, cbind(y, median(sim), sd(sim)))
-  y <- y + 1
+while (i <= num) {
+  sim <- tsim(1000, i, ctrl.mean, ctrl.sd, treated.mean, treated.sd)
+  res <- rbind(res, cbind(i, mean(sim), sd(sim)))
+  i <- i + 1
 }
+
+# Plot the result
 
 res <- as.data.frame(res)
 
-ggplot(res, aes(x=y, y=-log10(V2))) +
+ggplot(res, aes(x=i, y=-log10(V2))) +
   geom_line() +
   geom_ribbon(aes(ymin=-log10(V2)-log10(V3), ymax=-log10(V2)+log10(V3)), alpha = 0.2) +
   annotate("segment", x = 6, xend = num, y = -log10(0.05), yend = -log10(0.05), colour = "red", linetype = "dashed") +
