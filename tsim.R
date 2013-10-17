@@ -31,9 +31,9 @@ while (i <= num) {
   i <- i + 1
 }
 
-# Plot the result
-
 res <- as.data.frame(res)
+
+# Plot the result
 
 ggplot(res, aes(x=i, y=-log10(V2))) +
   geom_line() +
