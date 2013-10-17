@@ -22,6 +22,7 @@ data <- read.table("clipboard")
 data$conc <- getConc(data$V1, dilution, logmod.a, logmod.b, logmod.c, logmod.d)
 points(data$V1 ~ data$conc, col = "red")
 data$conc.dilution <- data$conc * dilution
+points(data$V1 ~ data$conc, col="red")
 # Subtract medium manually!
 
 write.table(data$final,"clipboard", row.names=F, col.names=F)
