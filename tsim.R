@@ -23,7 +23,7 @@ res <- NULL
 
 for (i in n_range) {
   sim <- tsim(1000, i, ctrl.mean, ctrl.sd, treated.mean, treated.sd)
-  res <- rbind(res, cbind(i, mean(sim), sd(sim)))
+  res <- rbind(res, cbind(i, mean(sim), sd(log10(sim))))
 }
 
 res <- as.data.frame(res)
@@ -32,7 +32,7 @@ res <- as.data.frame(res)
 
 ggplot(res, aes(x=i, y=-log10(V2))) +
   geom_line() +
-  geom_ribbon(aes(ymin=-log10(V2)-log10(V3), ymax=-log10(V2)+log10(V3)), alpha = 0.2) +
+  geom_ribbon(aes(ymin=-log10(V2)-V3, ymax=-log10(V2)+V3), alpha = 0.2) +
   annotate("segment", x = 6, xend = max(n_range), y = -log10(0.05), yend = -log10(0.05), colour = "red", linetype = "dashed") +
   annotate("text",  x = 0, y=-log10(0.05), label= "p = 0.05", hjust=0, size=3) +
   annotate("segment", x = 6, xend = max(n_range), y = -log10(0.01), yend = -log10(0.01), colour = "red", linetype = "dashed") +
