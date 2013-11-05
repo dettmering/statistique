@@ -1,6 +1,6 @@
 normalizeData <- function(mean1, sd1, mean2, sd2) {
 	normalmean <- mean1 / mean2
-	normalsd <- normalmean * sqrt((mean2/sd2)^2 + (mean1/sd1)^2)
+	normalsd <- normalmean * sqrt((sd2/mean2)^2 + (sd1/mean1)^2)
 
 	return(cbind(normalmean, normalsd))
 }
