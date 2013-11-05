@@ -1,8 +1,8 @@
 ### Aggregate Datasets
 ### Till Dettmering, dettmering(at)gmx.net
 
-aggregateDataset <- function(a) {
-#	a <- read.table(thefile, comment.char = "#", header= FALSE, blank.lines.skip=TRUE)
+aggregateDataset <- function(mean, stdev, rpl) {
+	a <- cbind(mean, stdev, rpl)
 
 	x <- mean(a[,1])
 	sd <- sd(a[,1])
