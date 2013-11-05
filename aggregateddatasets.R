@@ -11,6 +11,12 @@ aggregateDataset <- function(mean, stdev, rpl) {
 
 	variance <- sum(a[,3] / n * a[,2] * a[,2]) + sum(a[,3] / n * (a[,1] - x) * (a[,1] - x))
 	sd_weight <- sqrt(variance)
+  
+  if (is.na(sd_weight)) {
+    sd_weight <- sd
+    warning("Weighted SD was replaced with unweighted SD due to occurrence of NA.")
+  }
+  
 	sem_weight <- sd_weight / sqrt(n)
 	sem <- sd / sqrt(n)
 
