@@ -1,5 +1,6 @@
 ### Aggregate Datasets
 ### Till Dettmering, dettmering(at)gmx.net
+### based on http://books.google.de/books?id=cn3JtP5ugQsC&lpg=PA141&ots=YHV9PQJB9v&dq=varianz%20von%20%20zusammengefasste%20gruppen%20formel&hl=de&pg=PA141#v=onepage&q&f=false
 
 aggregateDataset <- function(mean, stdev, rpl) {
 	a <- cbind(mean, stdev, rpl)
