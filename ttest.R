@@ -7,7 +7,7 @@ welch <- function(ctrl.x, ctrl.sd, ctrl.n, smpl.x, smpl.sd, smpl.n) {
   df <- variance^2 / ((ctrl.sd.sq^2 / (ctrl.n - 1)) + (smpl.sd.sq^2 / (smpl.n - 1)))
   p <- 2 * pt(-abs(t), df)
   
-  pi <- log2(smpl.x / ctrl.x) * -log10(p) # pi significance score, after Xiao et al. (2012), doi:10.1093/bioinformatics/btr671
+  pi <- abs(log2(smpl.x / ctrl.x)) * -log10(p) # pi significance score, after Xiao et al. (2012), doi:10.1093/bioinformatics/btr671
   
   result <- cbind(t, df, p, pi)
   return(result)
